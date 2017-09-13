@@ -1,3 +1,7 @@
 WebApiExample/.vs/*
 WebApiExample/packages/*
 WebApiExample/WebApiExample/bin/*
+MathNetExamples/net46/.vs/*
+MathNetExamples/net46/HelloWorld/obj/*
+MathNetExamples/net46/packages/*
+MathNetExamples/net46/HelloWorld/bin/*
