@@ -63,5 +63,34 @@ namespace LinkedList
 
             size++;
         }
+        
+        /// <summary>
+        /// Removes the first occurrence of the specified value from the list
+        /// </summary>
+        public bool Remove(int content){
+            if (size == 0){
+                return false;
+            }
+
+            var current = head;
+            // Check head
+            if (current.NodeContent == content){
+                current = current.Next;
+                size--;
+                return true;
+            }
+
+            // Check starting from head+1
+            while (current.Next != null){       // Loop until the tail-1
+                if (current.Next.NodeContent == content){  // Check tail NodeContent
+                    current.Next = current.Next.Next;
+                    size--;
+                    return true;
+                }
+                current = current.Next;
+            }
+
+            return false;
+        }
     }
 }
