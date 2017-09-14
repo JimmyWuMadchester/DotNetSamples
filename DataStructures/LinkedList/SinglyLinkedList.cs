@@ -16,10 +16,8 @@ namespace LinkedList
     public class SinglyLinkedList{
         private Node head;
         private Node tail;
-        private int size;
 
         public SinglyLinkedList(){
-            size = 0;
             head = null;
             tail = null;
         }
@@ -38,12 +36,6 @@ namespace LinkedList
             return tail;
         }
 
-        /// <summary>
-        /// Return the size of list
-        /// </summary>
-        public int Count(){
-            return size;
-        }
 
         /// <summary>
         /// Adds a new node containing the specified value at the end of the LinkedList
@@ -61,15 +53,13 @@ namespace LinkedList
                 tail.Next = node;   // Link current tail to the new node
                 tail = tail.Next;   // Change tail to the new node.
             }
-
-            size++;
         }
         
         /// <summary>
         /// Removes the first occurrence of the specified value from the list
         /// </summary>
         public bool Remove(int content){
-            if (size == 0){
+            if (head == null){
                 return false;
             }
 
@@ -77,7 +67,6 @@ namespace LinkedList
             // Check head
             if (current.NodeContent == content){
                 current = current.Next;
-                size--;
                 return true;
             }
 
@@ -85,13 +74,30 @@ namespace LinkedList
             while (current.Next != null){       // Loop until the tail-1
                 if (current.Next.NodeContent == content){  // Check tail NodeContent
                     current.Next = current.Next.Next;
-                    size--;
                     return true;
                 }
                 current = current.Next;
             }
 
             return false;
+        }
+
+        public void Reverse(){
+            var current = head;
+            Node newRoot = null;
+            Node temp;
+            while (current != null){
+                temp = current.Next;
+                current.Next = newRoot;
+                newRoot = current;
+
+                if (current.Next == null){
+                    tail = current;
+                }
+                current = temp;
+            }
+            
+            head = newRoot;
         }
     }
 
@@ -149,7 +155,6 @@ namespace LinkedList
             l.AddLast(4);
             Console.WriteLine($"First item in the list: {l.First().NodeContent}");
             Console.WriteLine($"Last item in the list: {l.Last().NodeContent}");
-            Console.WriteLine($"Count items in the list: {l.Count()}");
 
             l.AddLast(4);
             l.AddLast(2);
@@ -158,9 +163,9 @@ namespace LinkedList
             l.AddLast(3);
             l.AddLast(4);
             
-            Console.WriteLine($"Count items in the list before remove: {l.Count()}");
             while(l.Remove(3)){}
-            Console.WriteLine($"Count items in the list after remove: {l.Count()}");
+            Console.WriteLine($"First item in the list: {l.First().NodeContent}");
+            Console.WriteLine($"Last item in the list: {l.Last().NodeContent}");
         }
 
         public static void DeleteDups_GivenDupsList_ShouldRemoveDups(){
@@ -213,6 +218,22 @@ namespace LinkedList
             var k = 4;
             Node result = Helper.FindNthToLast(l, k);
             Console.WriteLine($"The {k}th item from the last is: {result.NodeContent}");
+        }
+
+        public static void Reverse_GivenAscList_ShouldReturnDescList(){
+            var l = new SinglyLinkedList();
+            l.AddLast(0);
+            l.AddLast(1);
+            l.AddLast(2);
+            l.AddLast(3);
+            l.AddLast(4);
+
+            l.Reverse();
+            var current = l.First();
+            while (current != null){
+                Console.WriteLine(current.NodeContent);
+                current = current.Next;
+            }
         }
     }
 }
