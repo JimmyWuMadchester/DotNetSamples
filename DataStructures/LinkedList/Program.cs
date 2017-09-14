@@ -8,6 +8,7 @@ namespace LinkedList
         {
             SinglyLinkedListTest.Run();
             SinglyLinkedListTest.DeleteDups_GivenDupsList_ShouldRemoveDups();
+            SinglyLinkedListTest.FindNthToLast_Given2AsIndex_ShouldReturn2ndFromLast();
         }
     }
 }

@@ -115,6 +115,26 @@ namespace LinkedList
                 }
             }
         }
+
+        private static Node temp;
+        public static int NthToLast(Node current, int k){
+            int n;
+            // The tail is the 1st element from the last.
+            if (current == null){
+                return 0;
+            }
+            n = NthToLast(current.Next, k) + 1;
+            if (n == k){
+                temp = current;
+            }
+            return n;
+        }
+
+        public static Node FindNthToLast(SinglyLinkedList l, int k){
+            var current = l.First();
+            NthToLast(current, k);
+            return temp;
+        }
     }
 
     public static class SinglyLinkedListTest{
@@ -174,6 +194,25 @@ namespace LinkedList
                 Console.WriteLine(current.NodeContent);
                 current = current.Next;
             }
+        }
+
+        public static void FindNthToLast_Given2AsIndex_ShouldReturn2ndFromLast(){
+            Console.WriteLine("Hello, welcome to Linked List example of find the kth to last element");
+            var l = new SinglyLinkedList();
+            l.AddLast(0);
+            l.AddLast(1);
+            l.AddLast(2);
+            l.AddLast(3);
+            l.AddLast(4);
+            l.AddLast(4);
+            l.AddLast(2);
+            l.AddLast(10);
+            l.AddLast(4);
+            l.AddLast(3);
+            l.AddLast(4);
+            var k = 4;
+            Node result = Helper.FindNthToLast(l, k);
+            Console.WriteLine($"The {k}th item from the last is: {result.NodeContent}");
         }
     }
 }
