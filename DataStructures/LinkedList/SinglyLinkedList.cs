@@ -34,7 +34,7 @@ namespace LinkedList.SinglyLinkedList{
         /// <summary>
         /// Adds a new node containing the specified value at the end of the LinkedList
         /// </summary>
-        public void AddLst(object content){
+        public void AddLast(object content){
             var node = new Node(){
                 NodeContent = content,
                 Next = null
@@ -51,13 +51,6 @@ namespace LinkedList.SinglyLinkedList{
                 tail.Next = node;   // Link current tail to the new node
                 tail = tail.Next;   // Change tail to the new node.
             }
-        }
-
-        /// <summary>
-        /// Removes a node from the end of the LinkedList
-        /// </summary>
-        public void RemoveLast(){
-            
         }
     }
 }
