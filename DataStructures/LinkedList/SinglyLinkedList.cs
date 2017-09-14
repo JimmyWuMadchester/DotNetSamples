@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 
 namespace LinkedList
 {
@@ -91,6 +92,88 @@ namespace LinkedList
             }
 
             return false;
+        }
+    }
+
+    public static class Helper{
+        // Linked Lists Solution 2.1
+        // Remove duplicates using hashtable
+        public static void DeleteDups(SinglyLinkedList list){
+            Hashtable table = new Hashtable();
+            var current = list.First();
+            if (current != null){
+                table.Add(current.NodeContent, true);
+
+                while (current.Next != null){
+
+                    if (table.ContainsKey(current.Next.NodeContent)){
+                        current.Next = current.Next.Next;
+                    }else{
+                        table.Add(current.Next.NodeContent, true);
+                        current = current.Next;
+                    }
+                }
+            }
+        }
+    }
+
+    public static class SinglyLinkedListTest{
+        public static void Run(){
+            Console.WriteLine("Hello, welcome to Linked List example!");
+
+            var l = new SinglyLinkedList();
+            l.AddLast(0);
+            l.AddLast(1);
+            l.AddLast(2);
+            l.AddLast(3);
+            l.AddLast(4);
+            Console.WriteLine($"First item in the list: {l.First().NodeContent}");
+            Console.WriteLine($"Last item in the list: {l.Last().NodeContent}");
+            Console.WriteLine($"Count items in the list: {l.Count()}");
+
+            l.AddLast(4);
+            l.AddLast(2);
+            l.AddLast(3);
+            l.AddLast(4);
+            l.AddLast(3);
+            l.AddLast(4);
+            
+            Console.WriteLine($"Count items in the list before remove: {l.Count()}");
+            while(l.Remove(3)){}
+            Console.WriteLine($"Count items in the list after remove: {l.Count()}");
+        }
+
+        public static void DeleteDups_GivenDupsList_ShouldRemoveDups(){
+            Console.WriteLine("Hello, welcome to Linked List example of removing duplicates");
+
+            var l = new SinglyLinkedList();
+            l.AddLast(0);
+            l.AddLast(1);
+            l.AddLast(2);
+            l.AddLast(3);
+            l.AddLast(4);
+            l.AddLast(4);
+            l.AddLast(2);
+            l.AddLast(3);
+            l.AddLast(4);
+            l.AddLast(3);
+            l.AddLast(4);
+            
+            Node current = null;
+            Console.WriteLine("Before removing duplicates:");
+            current = l.First();
+            while (current != null){
+                Console.WriteLine(current.NodeContent);
+                current = current.Next;
+            }
+
+            Helper.DeleteDups(l);
+            Console.WriteLine("After removing duplicates:");
+            current = l.First();
+            while (current != null){
+                Console.WriteLine(current.NodeContent);
+                current = current.Next;
+            }
         }
     }
 }
