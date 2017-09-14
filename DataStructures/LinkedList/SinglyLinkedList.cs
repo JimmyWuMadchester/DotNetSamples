@@ -1,12 +1,18 @@
 using System;
 
-namespace LinkedList.SinglyLinkedList{
-    public class SinglyLinkedList{
-        public class Node{
-            public object NodeContent;
-            public Node Next;
-        }
+namespace LinkedList
+{
+    public class Node{
+        public int NodeContent { get; set; }
+        public Node Next;
 
+        public Node(int content){
+            this.NodeContent = content;
+            this.Next = null;
+        }
+    }
+
+    public class SinglyLinkedList{
         private Node head;
         private Node tail;
         private int size;
@@ -32,14 +38,17 @@ namespace LinkedList.SinglyLinkedList{
         }
 
         /// <summary>
+        /// Return the size of list
+        /// </summary>
+        public int Count(){
+            return size;
+        }
+
+        /// <summary>
         /// Adds a new node containing the specified value at the end of the LinkedList
         /// </summary>
-        public void AddLast(object content){
-            var node = new Node(){
-                NodeContent = content,
-                Next = null
-            };
-
+        public void AddLast(int content){
+            var node = new Node(content);
             // Adding the first node. Make it the head.
             if (head == null){
                 head = node;        // Change head to the new node
@@ -51,6 +60,8 @@ namespace LinkedList.SinglyLinkedList{
                 tail.Next = node;   // Link current tail to the new node
                 tail = tail.Next;   // Change tail to the new node.
             }
+
+            size++;
         }
     }
 }

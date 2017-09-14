@@ -5,3 +5,5 @@ MathNetExamples/net46/.vs/*
 MathNetExamples/net46/HelloWorld/obj/*
 MathNetExamples/net46/packages/*
 MathNetExamples/net46/HelloWorld/bin/*
+DataStructures/LinkedList/bin/*
+DataStructures/LinkedList/obj/*
