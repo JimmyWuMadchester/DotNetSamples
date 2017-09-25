@@ -7,3 +7,6 @@ MathNetExamples/net46/packages/*
 MathNetExamples/net46/HelloWorld/bin/*
 DataStructures/LinkedList/bin/*
 DataStructures/LinkedList/obj/*
+DataStructures/LinkedList/.vscode/*
+Algorithms/Fibonacci/bin/*
+Algorithms/Fibonacci/obj/*
